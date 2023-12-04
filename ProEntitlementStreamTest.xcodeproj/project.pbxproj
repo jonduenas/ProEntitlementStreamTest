@@ -11,6 +11,8 @@
 		65559ACC2B1E5F0200C6A1F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65559ACB2B1E5F0200C6A1F8 /* ContentView.swift */; };
 		65559ACE2B1E5F0400C6A1F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65559ACD2B1E5F0400C6A1F8 /* Assets.xcassets */; };
 		65559AD12B1E5F0400C6A1F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65559AD02B1E5F0400C6A1F8 /* Preview Assets.xcassets */; };
+		65559AD92B1E5F5500C6A1F8 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 65559AD82B1E5F5500C6A1F8 /* Dependencies */; };
+		65559ADB2B1E5F5500C6A1F8 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 65559ADA2B1E5F5500C6A1F8 /* DependenciesMacros */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65559ADB2B1E5F5500C6A1F8 /* DependenciesMacros in Frameworks */,
+				65559AD92B1E5F5500C6A1F8 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +87,10 @@
 			dependencies = (
 			);
 			name = ProEntitlementStreamTest;
+			packageProductDependencies = (
+				65559AD82B1E5F5500C6A1F8 /* Dependencies */,
+				65559ADA2B1E5F5500C6A1F8 /* DependenciesMacros */,
+			);
 			productName = ProEntitlementStreamTest;
 			productReference = 65559AC62B1E5F0200C6A1F8 /* ProEntitlementStreamTest.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 65559ABD2B1E5F0200C6A1F8;
+			packageReferences = (
+				65559AD72B1E5F5500C6A1F8 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+			);
 			productRefGroup = 65559AC72B1E5F0200C6A1F8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -344,6 +355,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65559AD72B1E5F5500C6A1F8 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65559AD82B1E5F5500C6A1F8 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65559AD72B1E5F5500C6A1F8 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		65559ADA2B1E5F5500C6A1F8 /* DependenciesMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65559AD72B1E5F5500C6A1F8 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = DependenciesMacros;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65559ABE2B1E5F0200C6A1F8 /* Project object */;
 }

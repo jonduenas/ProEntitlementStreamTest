@@ -9,13 +9,7 @@ import Dependencies
 import DependenciesMacros
 import SwiftUI
 
-extension DependencyValues {
-    public var proEntitlementStream: ProEntitlementStream {
-        get { self[ProEntitlementStream.self] }
-        set { self[ProEntitlementStream.self] = newValue }
-    }
-}
-
+// Expansion of this macro will show a public initializer available
 @DependencyClient
 public struct ProEntitlementStream {
     public var entitlement: () -> AsyncStream<Bool> = { .never }
@@ -28,7 +22,11 @@ extension ProEntitlementStream: DependencyKey {
 }
 
 class Model {
-    @Dependency(\.proEntitlementStream) private var proStream
+    private var proStream: ProEntitlementStream
+
+    init(proStream: ProEntitlementStream) {
+        self.proStream = proStream
+    }
 }
 
 struct ContentView: View {
@@ -45,12 +43,20 @@ struct ContentView: View {
     }
 }
 
+// This preview fails to build: 'ProEntitlementStream' cannot be constructed because it has no accessible initializers
 #Preview {
-    ContentView(model: withDependencies {
-        $0.proEntitlementStream = ProEntitlementStream(entitlement: {
+    ContentView(model: Model(proStream: ProEntitlementStream(entitlement: {
             AsyncStream<Bool>.never
         })
-    } operation: {
-        Model()
-    })
+    ))
+}
+
+// This preview works fine
+struct ContentView_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        ContentView(model: Model(proStream: ProEntitlementStream(entitlement: {
+                AsyncStream<Bool>.never
+            })
+        ))
+    }
 }
